@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: 11.0.18 (Ubuntu)
+Main-Class: geo.Main
+Class-Path: lib/commons-cli-1.5.0.jar lib/json-20230227.jar src/

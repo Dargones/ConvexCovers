@@ -1,0 +1,8 @@
+CompGeo.iml
+out
+.idea
+*.class
+Cover.jar
+instances/*
+!instances/ccheese142.instance.json
+!instances/socg60.instance.json
