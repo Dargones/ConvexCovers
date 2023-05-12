@@ -1,0 +1,25 @@
+name: Sanity Check
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+           
+    - name: Compile
+      run: make
+      
+    - name: Test
+      run: java -jar Cover.jar -file=instances/socg60.instance.json
