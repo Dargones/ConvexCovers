@@ -1,6 +1,7 @@
 package geo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -83,8 +84,9 @@ public class ConvexPolygon extends SimplePolygon {
     }
 
     public ConvexPolygon mergeWith(ConvexPolygon polygon) throws NotConvexException {
-        HashSet<Point> combinedVertices = new HashSet<>(List.of(outerBoundary));
-        combinedVertices.addAll(List.of(polygon.outerBoundary));
+        HashSet<Point> combinedVertices = new HashSet<>();
+        combinedVertices.addAll(Arrays.asList(this.outerBoundary));
+        combinedVertices.addAll(Arrays.asList(polygon.outerBoundary));
         return new ConvexPolygon(convexHull(combinedVertices.toArray(new Point[0])));
     }
 

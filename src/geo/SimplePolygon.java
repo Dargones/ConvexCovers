@@ -1,6 +1,7 @@
 package geo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SimplePolygon extends PolygonWithHoles {
@@ -15,7 +16,8 @@ public class SimplePolygon extends PolygonWithHoles {
     public List<Triangle> triangulate(int limit) throws ConvexPolygon.NotConvexException {
         List<Triangle> triangles = new ArrayList<>();
         List<Edge> edges = getAllEdges();
-        ArrayList<Point> points = new ArrayList<>(List.of(outerBoundary));
+        List<Point> points = new ArrayList<>();
+        points.addAll(Arrays.asList(outerBoundary));
         while (points.size() > 3) {
             int i = 0;
             while (i < points.size() && points.size() > 3) {

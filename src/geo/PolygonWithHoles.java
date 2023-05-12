@@ -5,7 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,8 +25,9 @@ public class PolygonWithHoles {
         this.holes = holes;
     }
 
-    public static PolygonWithHoles parseInstanceFile(File instanceFile) throws IOException {
-        String jsonString = Files.readString(instanceFile.toPath(), StandardCharsets.UTF_8);
+    public static PolygonWithHoles parseInstanceFile(String instanceFile) throws IOException {
+        Path path = FileSystems.getDefault().getPath(instanceFile);
+        String jsonString = String.join("\n", Files.readAllLines(path));
         JSONObject json = new JSONObject(jsonString);
 
         JSONArray jsonOuterBoundary = json.getJSONArray("outer_boundary");
@@ -147,7 +150,7 @@ public class PolygonWithHoles {
 
         List<Point> points = new ArrayList<>(Arrays.asList(outerBoundary));
         List<Edge> edges = getAllEdges();
-        List<Point[]> holes = new ArrayList<>(List.of(this.holes));
+        List<Point[]> holes = new ArrayList<>(Arrays.asList(this.holes));
 
 
         while (holes.size() != 0) {

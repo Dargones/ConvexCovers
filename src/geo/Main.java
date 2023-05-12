@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         CLO clo = new CLO(args);
         try {
-            PolygonWithHoles polygon = PolygonWithHoles.parseInstanceFile(new File(clo.file));
+            PolygonWithHoles polygon = PolygonWithHoles.parseInstanceFile(clo.file);
             PolygonWithHoles.drawPolygons(Collections.singletonList(polygon), clo.width, clo.height, new File(clo.file + "_0_original.png"), true);
             System.out.println("Saved the image of the original polygon to " + clo.file + "_0_original.png");
             System.out.println("Reducing to a degenerate simple polygon...");
