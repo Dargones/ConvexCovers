@@ -14,6 +14,23 @@ public class ConvexPolygon extends SimplePolygon {
         }
     }
 
+    private static void pruneCollinearPoins(HashSet<Point> points) {
+        HashSet<Point> toRemove = new HashSet<>();
+        for (Point p1: points) {
+            for (Point p2: points) {
+                for (Point p3: points) {
+                    if ((p1 == p2) || (p2 == p3) || (p1 == p3)) {
+                        continue;
+                    }
+                    if (new Edge(p1, p3).contains(p2)) {
+                        toRemove.add(p2);
+                    }
+                }
+            }
+        }
+        points.removeAll(toRemove);
+    }
+
     public static boolean isConvex(Point[] points) {
         int n = points.length;
 
@@ -87,6 +104,7 @@ public class ConvexPolygon extends SimplePolygon {
         HashSet<Point> combinedVertices = new HashSet<>();
         combinedVertices.addAll(Arrays.asList(this.outerBoundary));
         combinedVertices.addAll(Arrays.asList(polygon.outerBoundary));
+        pruneCollinearPoins(combinedVertices);
         return new ConvexPolygon(convexHull(combinedVertices.toArray(new Point[0])));
     }
 
@@ -124,7 +142,7 @@ public class ConvexPolygon extends SimplePolygon {
             q = (p + 1) % n;
             for (int i = 0; i < n; i++) {
                 Orientation o = orientation(points[p], points[i], points[q]);
-                if ((o == Orientation.Counterclockwise)) { //|| (o == Orientation.Collinear &&
+                if (o == Orientation.Counterclockwise) {
                    q = i;
                 }
             }

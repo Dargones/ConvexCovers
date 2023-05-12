@@ -6,3 +6,7 @@ Cover.jar
 instances/*
 !instances/ccheese142.instance.json
 !instances/socg60.instance.json
+!instances/socg92.instance.json
+!instances/maze_74_50_05_00.instance.json
+!instances/cheese163.instance.json
+!instances/srpg_octa_mc0000082.instance.json

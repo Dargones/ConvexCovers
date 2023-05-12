@@ -16,7 +16,7 @@ public class CLO { // command line options
     public final int height;  // height of the saved images (in pixels)
 
     // Default Values:
-    public static final int SEED_DEFAULT = 1;
+    public static final int SEED_DEFAULT = 0;
     public static final int SEARCH_LIMIT_DEFAULT = 10000;
     public static final int WIDTH_DEFAULT = 1000;
     public static final int HEIGHT_DEFAULT = 1000;
